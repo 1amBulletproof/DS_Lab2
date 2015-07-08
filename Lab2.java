@@ -88,7 +88,8 @@ public class Lab2
         //print determinant
         
         //print output matrix
-        matrix.display();       
+        matrix.display();  
+        System.out.println("\n\n" + matrix.toString());
         
   
 

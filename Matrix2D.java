@@ -7,14 +7,11 @@
  * @version 1.0
  */
 
-/**
- *
- * @author Tarney
- */
-public class Matrix2D {
+
+public class Matrix2D implements Matrix{
     private double[][] matrix;
-    private int sizeX;//# of rows
-    private int sizeY;//# of columns
+    private int sizeX;//# of rows in use
+    private int sizeY;//# of columns in use
     private double unused = -9999.99;
     private String output = ""; //used for the display method 
     
@@ -32,8 +29,8 @@ public class Matrix2D {
                 matrix[i][j] = unused;//value represents un-set array index 
             }
         }
-        sizeX = 10;
-        sizeY = 10;
+        sizeX = 0;
+        sizeY = 0;
     }
     
     /**
@@ -51,8 +48,8 @@ public class Matrix2D {
                 matrix[i][j] = unused;//value represents un-set array index 
             }
         }        
-        sizeX = x;
-        sizeY = y;
+        sizeX = 0;
+        sizeY = 0;
     }
     
     /**
@@ -61,9 +58,13 @@ public class Matrix2D {
      * @param y column location to set value
      * @param value the value to store in the matrix
      */
+    @Override
     public void setValue(int x, int y, double value)
     {
         matrix[x][y] = value;
+        if (x > sizeX){sizeX = x;}
+        if (y > sizeY){sizeY = y;}
+        
     }
     
     /**
@@ -72,19 +73,40 @@ public class Matrix2D {
      * @param y column location to retrieve value
      * @return  the value retrieved in the matrix
      */
+    @Override
     public double getValue(int x, int y)
     {
         return matrix[x][y];
     }
     
     /**
+     * Retrieves the # of rows in use
+     * @return  the # of rows
+     */
+    @Override
+    public int getNumRows()
+    {
+        return sizeX;
+    }
+    
+    /**
+     * Retrieves the # of columns in use
+     * @return  the # of columns
+     */
+    @Override
+    public int getNumCol()
+    {
+        return sizeY;
+    }    
+    
+    /**
      * Prints matrix to console
      */
     public void display()
     {
-        for (int i = 0; i < sizeX; i++)
+        for (int i = 0; i <= sizeX; i++)
         {
-            for (int j = 0; j < sizeY; j++)
+            for (int j = 0; j <= sizeY; j++)
             { 
                 if (getValue(i,j) != unused)
                 {
@@ -97,4 +119,29 @@ public class Matrix2D {
             
         }
     }
-}
+   
+    /**
+     * returns string representation of matrix 
+     * @return string representation of matrix
+     */
+    @Override
+    public String toString()
+    {
+        output = "";
+        for (int i = 0; i <= sizeX; i++)
+        {
+            for (int j = 0; j <= sizeY; j++)
+            { 
+                if (getValue(i,j) != unused)
+                {
+                    output += String.valueOf(getValue(i,j));
+                    output += " ";
+                }
+            }
+            output += "\n";
+            
+        }
+        return output;
+    }    
+    
+}//end of Matrix2D class
