@@ -61,22 +61,20 @@ public class File_IO {
         } else {return null;}           
     }
     
-    
     /**
      * Writes a line to the output file
      * 
      * @param output    what to write to the output file (a string value)
      */
-    public void write_Output(String output)
+    public void writeOutput(String output)
     {
         printer.println(output);
     }
-   
     
     /**
      * Closes the output file
      */
-    public void close_Output()
+    public void closeOutput()
     {
         printer.close();
     }

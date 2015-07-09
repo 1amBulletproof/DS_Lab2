@@ -47,6 +47,8 @@ public class Lab2
                 File_IO fileIO = new File_IO(args[0], args[1]);
                 int matrixRow = 0;//keeps track of row insert index 
                 int matrixColumn = 0; //keeps track of column insert index
+                //Need 
+                
                 for (int i = 0; i < 5; i++)
                 {
                     scanner = new Scanner(fileIO.getNextLine());
@@ -68,8 +70,9 @@ public class Lab2
            
                 }
                 System.out.println(matrix.getValue(1,0));
+                fileIO.writeOutput(matrix.toString());
                 //error handling on closing the output file
-                fileIO.close_Output();
+                fileIO.closeOutput();
             }
         }
         catch (Exception e)
