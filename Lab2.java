@@ -31,9 +31,12 @@ public class Lab2
     {
         long start = System.nanoTime(); //runtime metrics variable
         long end;                       //runtime metrics variable
-        Scanner scanner;//will scan input strings for individual doubles
-        double value;//temporary storage for any doubles found in each input line
-        Matrix2D matrix = new Matrix2D();
+        Scanner scanner;                //will scan input strings for individual doubles
+        double value;                   //temporary storage for any doubles found in each input line
+        Matrix2D matrix = new Matrix2D();//main matrix to manipulate
+        Matrix2D minorMatrix;           //store a minor matrix for testing
+        MatMath matrixCalc = new MatMath();
+       
         //cautiously initialize File I/O
         try 
         {
@@ -45,11 +48,11 @@ public class Lab2
              {
                 //pass each input to Matrix2D
                 File_IO fileIO = new File_IO(args[0], args[1]);
-                int matrixRow = 0;//keeps track of row insert index 
-                int matrixColumn = 0; //keeps track of column insert index
+                int matrixRow = 1;//keeps track of row insert index 
+                int matrixColumn = 1; //keeps track of column insert index
                 //Need 
                 
-                for (int i = 0; i < 5; i++)
+                for (int i = 1; i <= 5; i++)
                 {
                     scanner = new Scanner(fileIO.getNextLine());
                     if (scanner.hasNextDouble())
@@ -63,13 +66,15 @@ public class Lab2
                             System.out.println(value);
                             matrixColumn++;
                         }
-                        matrixRow++;
+                        matrixRow++;//like hitting "return"
                     }
-                    matrixColumn = 0;
+                    matrixColumn = 1;//like hitting "return"
                     
            
                 }
-                System.out.println(matrix.getValue(1,0));
+                System.out.println("\n\n" + matrix.toString());
+                minorMatrix = matrixCalc.minor(matrix, 2, 2);
+                System.out.println("\n\n" + minorMatrix.toString());
                 fileIO.writeOutput(matrix.toString());
                 //error handling on closing the output file
                 fileIO.closeOutput();
@@ -90,9 +95,9 @@ public class Lab2
 
         //print determinant
         
-        //print output matrix
-        matrix.display();  
-        System.out.println("\n\n" + matrix.toString());
+//        //print output matrix
+//        matrix.display();  
+//        System.out.println("\n\n" + matrix.toString());
         
   
 

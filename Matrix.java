@@ -8,6 +8,12 @@
 public interface Matrix 
 {
     /**
+     * Tests whether the matrix is square
+     * @return true if the matrix is square
+     */
+    public boolean isSquare ();
+    
+    /**
      * Stores a value in the matrix
      * @param x row location to set value
      * @param y column location to set value
@@ -35,11 +41,13 @@ public interface Matrix
      */
     public int getNumCol();
     
+    
     /**
      * returns string representation of matrix 
      * @return string representation of matrix
      */
     @Override
     public String toString();
+    
     
 }
