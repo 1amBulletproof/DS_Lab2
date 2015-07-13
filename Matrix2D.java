@@ -23,9 +23,9 @@ public class Matrix2D implements Matrix{
     public Matrix2D ()
     {
         matrix = new double[11][11];
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i <= 10; i++)
         {
-            for (int j = 0; j < 11; j++)
+            for (int j = 0; j <= 10; j++)
             { 
                 matrix[i][j] = unused;//value represents un-set array index 
             }
@@ -42,10 +42,10 @@ public class Matrix2D implements Matrix{
      */
     public Matrix2D (int x, int y)
     {
-        matrix = new double[x][y];
-        for (int i = 0; i < x+1; i++)
+        matrix = new double[x+1][y+1];//allows us to use 1-based indexing
+        for (int i = 0; i <= x; i++)
         {
-            for (int j = 0; j <= y+1; j++)
+            for (int j = 0; j <= y; j++)
             { 
                 matrix[i][j] = unused;//value represents un-set array index 
             }

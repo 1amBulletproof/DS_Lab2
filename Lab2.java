@@ -31,11 +31,13 @@ public class Lab2
     {
         long start = System.nanoTime(); //runtime metrics variable
         long end;                       //runtime metrics variable
+        int matrixSize;                 //nxn size of next matrix
         Scanner scanner;                //will scan input strings for individual doubles
         double value;                   //temporary storage for any doubles found in each input line
-        Matrix2D matrix = new Matrix2D();//main matrix to manipulate
+        Matrix2D matrix;                //main matrix to manipulate
         Matrix2D minorMatrix;           //store a minor matrix for testing
         MatMath matrixCalc = new MatMath();
+        double determinant; 
        
         //cautiously initialize File I/O
         try 
@@ -47,37 +49,51 @@ public class Lab2
              } else //good input arguments
              {
                 //pass each input to Matrix2D
-                File_IO fileIO = new File_IO(args[0], args[1]);
-                int matrixRow = 1;//keeps track of row insert index 
-                int matrixColumn = 1; //keeps track of column insert index
-                //Need 
+                File_IO fileIO = new File_IO(args[0], args[1]);              
                 
-                for (int i = 1; i <= 5; i++)
+/***********this will all repeat eventually*****************/
+                while (fileIO.hasNextLine())
                 {
                     scanner = new Scanner(fileIO.getNextLine());
-                    if (scanner.hasNextDouble())
-                    {
-                        
-                        while (scanner.hasNextDouble())
-                        {
 
-                            value = scanner.nextDouble();
-                            matrix.setValue(matrixRow, matrixColumn, value);
-                            System.out.println(value);
-                            matrixColumn++;
+                /******ERROR HANDLING HERE FOR 0 or >1 input*****/
+                    matrixSize = scanner.nextInt();
+                    matrix = new Matrix2D(matrixSize, matrixSize);
+
+                    int matrixRow = 1;//keeps track of row insert index 
+                    int matrixColumn = 1; //keeps track of column insert index
+
+                    for (int i = 1; i <= matrixSize; i++) //loop through lines = sizeOfMatrix
+                    {
+                        scanner = new Scanner(fileIO.getNextLine());
+                        if (scanner.hasNextDouble())
+                        {
+                            while (scanner.hasNextDouble())
+                            {
+                                value = scanner.nextDouble();
+                                matrix.setValue(matrixRow, matrixColumn, value);
+//                                System.out.println(value);
+                                matrixColumn++;
+                            }
+                            matrixRow++;//like hitting "return"
+                            matrixColumn = 1;//like hitting "return"
                         }
-                        matrixRow++;//like hitting "return"
                     }
-                    matrixColumn = 1;//like hitting "return"
-                    
-           
-                }
+/***************************************************************/
+            /*****Testing OUtput*******/
                 System.out.println("\n\n" + matrix.toString());
-                minorMatrix = matrixCalc.minor(matrix, 2, 2);
-                System.out.println("\n\n" + minorMatrix.toString());
-                fileIO.writeOutput(matrix.toString());
-                //error handling on closing the output file
-                fileIO.closeOutput();
+                determinant = matrixCalc.det(matrix);
+                System.out.println("\nThe Determinant of the matrix is: ");
+                System.out.println(determinant);
+                }
+//                minorMatrix = matrixCalc.minor(matrix, 1, 1);
+//                System.out.println(minorMatrix.getValue(1,1) + "\n");
+//                System.out.println("\n\n" + minorMatrix.toString());
+
+//
+//                fileIO.writeOutput(matrix.toString());
+//                //error handling on closing the output file
+//                fileIO.closeOutput();
             }
         }
         catch (Exception e)
@@ -85,13 +101,7 @@ public class Lab2
           System.out.println("There was an input or output file parameter issue");  
         }
        
-        
-        
 
-
-        
-        //calculate determinant
-        
 
         //print determinant
         
