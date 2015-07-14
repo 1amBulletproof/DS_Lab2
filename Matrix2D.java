@@ -61,7 +61,29 @@ public class Matrix2D implements Matrix{
     @Override
     public boolean isSquare ()
     {
-        return sizeX == sizeY; 
+        return (sizeX == sizeY && countCol()); 
+    }
+    
+    /**
+     * Count every row and make sure you have no fewer than the column size values
+     * @return TRUE if each row has the same number of columns
+     */
+    private boolean countCol()
+    {
+
+        boolean square = true;
+        for (int i = 1; i<=sizeX; i++)
+        {
+            int j = 1;      //column index
+            int count = 0;  //column count
+            while (j <= sizeY && getValue(i,j) != unused)
+            {
+                count++;
+                j++;
+            }
+            if (count != sizeY){square = false;}
+        }
+        return square;
     }
     
     /**

@@ -29,6 +29,21 @@ public class MatMath {
 
         //base case: the matrix is 1x1 (assuming square) & det(matrix[x]) = x
         if (matrix.getNumRows() == 1){return matrix.getValue(1,1);}
+        //ENHANCEMENT: save your stack! base case: the matrix is 2x2 (assuming square)
+        else if (matrix.getNumRows() == 2)
+        {
+            detSum = (matrix.getValue(1,1) * matrix.getValue(2,2)) 
+                    - (matrix.getValue(2,1) * matrix.getValue(1,2));
+            return detSum;
+        }
+        //ENHANCEMENT: save your stack! base case: the matrix is 3x3 (assuming square)    
+        else if (matrix.getNumRows() == 3)
+        {
+            detSum = matrix.getValue(1,1) * (matrix.getValue(2,2) * matrix.getValue(3,3) - matrix.getValue(3,2) * matrix.getValue(2,3))
+                    - matrix.getValue(2,1) * (matrix.getValue(1,2) * matrix.getValue(3,3) - matrix.getValue(3,2) * matrix.getValue(1,3))
+                    + matrix.getValue(3,1) * (matrix.getValue(1,2) * matrix.getValue(2,3) - matrix.getValue(2,2) * matrix.getValue(1,3));
+            return detSum;
+        }
         
         //recursively solve for each minor matrix determinant
         else
