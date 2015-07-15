@@ -1,10 +1,10 @@
 /**
 * This is the Lab2 driver class. 
 * <p> This class will implement the main flow of the program as follows:
-* read every nxn matrix with File_IO.java 
+* read all input with File_IO.java 
 * store every nxn matrix in Matrix2D.java 
-* write every nxn matrix to an output file with File_IO.java & Matrix2D.java
 * calculate every nxn matrix determinant in MatMath.java
+* write every nxn matrix to an output file with File_IO.java & Matrix2D.java
 * write every nxn matrix determinant to the output file using File_IO.java
 * and it will use RuntimeMetric.java to store the program runtime.
 * 
